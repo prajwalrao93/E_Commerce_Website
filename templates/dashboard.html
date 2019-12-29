@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>Dashboard</h1>
+
+	
+	<h3>Welcome <b>{{ session['username'] }}!!</b></h3>
+
+	<br>
+	<br>
+
+	<h4>You are now Logged in as <b>{{ session['account_type'] }}</b>. </h4>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	{% if session['account_type']=="seller" %}
+	<form action="/addproductspage" name="products" method="POST">
+		<button type="submit" class="btn btn-primary"> Add New Product    </button>
+	</form>
+	<br>
+	<form action="/products" name="products" method="POST">
+	<button type="submit" class="btn btn-primary"> See added Products </button>
+	</form><br>
+
+	{% else %}
+
+	<form action="/products" name="products" method="POST">
+	<button type="submit" class="btn btn-primary"> Buy Products </button>
+	</form><br>
+
+
+	{% endif %}
+
+{% endblock body %}
+

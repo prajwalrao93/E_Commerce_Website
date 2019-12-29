@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block body%}
+<h2> Congratulations!!!</h2>
+
+	{% for dict,quantity in cart %}
+	<ul class="list-group">
+	<b><li class="list-group-item">Product:{{ dict["product name"] }}</li></b>
+	<li class="list-group-item"><b>Price</b> : {{ dict["price"] }}<br><br>
+	<b>Description</b> : {{ dict["description"] }}<br><br>
+	<b>Seller Name</b> : {{ dict["username"] }}<br><br>
+	<b>Quantity</b> : {{ quantity }}</li><br>	
+	</ul>
+
+	{% endfor %}
+
+	<b>Total Price </b> : {{ session["order_total"] }}
+
+<form action="/dashboard" method="POST">
+	<button type="submit" class="btn btn-primary"  method ="POST"> Back to Dashboard</button> <br><br>
+</form>
+<form action="/logout" method="POST">
+	<button type="submit" class="btn btn-primary"  method ="POST"> Log Out </button><br><br>
+</form>
+<form action="/products" method="POST">
+	<button type="submit" class="btn btn-primary"  method ="POST">Start shopping again!       </button><br><br>
+</form>
+{% endblock body %}

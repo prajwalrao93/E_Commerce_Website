@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block body%}
+
+{% if cart=='None' %}
+
+	<h2> There is nothing in your cart presently!!! </h2>
+{% else %}
+	{% for dict,quantity in cart %}
+	<ul class="list-group">
+	<b><li class="list-group-item"> Product :{{ dict["product name"] }}</li></b>
+	<li class="list-group-item"><b>Price:</b> {{ dict["price"] }}<br><br>
+	<b>Description :</b> {{ dict["description"] }}<br><br>
+	<b>Seller Name :</b> {{ dict["username"] }}<br><br>
+	<b>Quantity :</b> {{quantity}}<br><br>
+	<form action="/remove_from_cart" method="POST">
+		<input name="product_id" type="hidden" value="{{dict['_id']}}">
+		<input name="price" type="hidden" value="{{dict['price']}}">
+		<input type="number" name="quantity" min="1" max="{{quantity}}" value="1">		
+		<input type=submit value="Remove from Cart"> <br>	
+		</form>
+		</li>	
+		<br><br>
+	{% endfor %}
+	</ul>
+
+	<div class="container" ><b class="center-align">Total Price </b> : {{ session["order_total"] }} </div>
+<br><br>
+<form action="/buy" method="POST">
+<button type="submit" class="btn btn-primary"  method ="POST">Buy!</button>
+</form>
+<br>
+{% endif %}
+<form action="/products" method="POST">
+<button type="submit" class="btn btn-primary" action="/products" method ="POST"> Products Page </button>
+</form>
+
+
+
+{% endblock body %}

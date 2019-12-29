@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-- The links we've taken from bootstrap cdn-->
+	<title>My Amazon</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+
+	<!-- the _navbar code has been taken from bootstrap -> getting started ->starter template ->ctrl U -- take nav tag and paste -->
+	{% include 'includes/_navbar.html' %}
+	<div class="container"> 
+		{% include 'includes/_messages.html' %}
+{% block body %}{% endblock %}
+	</div>
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

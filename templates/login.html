@@ -1,0 +1,26 @@
+{% extends 'layout.html'%}
+
+{% block body %}	
+
+<h1>Log-in here!</h1>
+<br>
+	<form action='/login' method="POST">
+		<div class="form-group">
+			<label>Username</label>
+			<input type="text" name="username"  class = "form-control"  value =  "{{request.form.username}}" placeholder="enter username here..." autofocus autocomplete="off">
+		</div>
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" name="password" class = "form-control" placeholder="enter password..." value ="{{request.form.password}}">
+		</div>
+	<button type="submit" class="btn btn-primary"> Sign in </button>
+
+ 		
+	</form>
+<br><br>
+<h4>Have no account? Then <a href="/register">register</a>!</h4>
+
+{% endblock %}
+
+
+

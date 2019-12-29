@@ -1,0 +1,36 @@
+{% extends 'layout.html'%}
+
+{% block body %}
+{% if isSearch == None %}
+
+<h2>Sorry, no products match your search results</h2>
+<form action="/products" name="products" method="POST">
+	<button type="submit" class="btn btn-primary"> Back to products page </button>
+	</form><br>
+
+{% else %}
+
+	{% for dict in search %} 
+	<ul class="list-group">
+	<b><li class="list-group-item">name:{{ dict["product name"] }}</li></b><br>
+		<li class="list-group-item">prce: {{ dict["price"] }}</li><br>
+		<li class="list-group-item">Description: {{ dict["description"] }}</li><br>
+	</ul>
+	{% if session['account_type']=="buyer" %}
+		<form action="/add_to_cart" method="POST">
+		<input name="product_id" type="hidden" value="{{dict['_id']}}">
+		<input type="number" name="quantity" min="1" max="10" value="1">		
+		<input type=submit value="Add to cart"> <br>	
+		</form>
+	{% else %}
+
+		<form action="/remove" method="POST">
+			<input name="product_id" type="hidden" value="{{dict['_id']}}">
+			<input type="submit" name="product_id" value="Remove Product">
+		</form>
+		
+	{% endif %}
+	{% endfor %}	
+
+{% endif %}	
+{% endblock %}
